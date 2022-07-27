@@ -31,7 +31,7 @@ class UpdateLoyaltyPointsJob
   end
 
   def generated_loyalty_points
-    (transaction_amount / 100 * (user.user_country_name == @transaction.country ? 10 : 20))
+    (transaction_amount / 100 * (user.country == User::DEFAULT_COUNTRY ? 10 : 20))
   end
 
   def user

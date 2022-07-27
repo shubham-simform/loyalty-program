@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :last_name
       t.datetime :date_of_birth
-      t.integer :country_id
+      t.string :country
       t.integer :loyalty_tier, default: 0
 
       ## Database authenticatable
@@ -23,6 +23,5 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
-    add_index :users, :country_id
   end
 end

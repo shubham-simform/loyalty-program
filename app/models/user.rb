@@ -5,10 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #validations
-  validates :first_name, :last_name, :date_of_birth, :country_id, presence: true
+  validates :first_name, :last_name, :date_of_birth, :country, presence: true
 
   # Associations
-  belongs_to :country
   has_many :transactions, dependent: :destroy
   has_many :user_points, dependent: :destroy
   has_many :user_rewards, dependent: :destroy
@@ -16,7 +15,5 @@ class User < ApplicationRecord
 
   enum loyalty_tier: { standard: 0, gold: 1, platinum: 2 }
 
-  def user_country_name
-    country.name
-  end
+  DEFAULT_COUNTRY = 'India'
 end
