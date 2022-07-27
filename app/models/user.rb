@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   enum loyalty_tier: { standard: 0, gold: 1, platinum: 2 }
 
-  def country_name
+  def user_country_name
     country.name
   end
 end
