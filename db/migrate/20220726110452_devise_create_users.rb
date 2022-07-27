@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.datetime :date_of_birth
       t.integer :country_id
+      t.integer :loyalty_tier, default: 0
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

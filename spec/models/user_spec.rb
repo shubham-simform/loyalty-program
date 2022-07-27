@@ -12,5 +12,7 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { should belong_to(:country) }
     it { should have_many(:transactions) }
+    it { should have_many(:user_rewards) }
+    it { should have_many(:rewards).through(:user_rewards) }
   end
 end
