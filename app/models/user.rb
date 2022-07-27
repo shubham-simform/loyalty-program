@@ -5,5 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #validations
-  validates :first_name, :last_name, :date_of_birth, presence: true
+  validates :first_name, :last_name, :date_of_birth, :country_id, presence: true
+
+  # Associations
+  belongs_to :country
+  has_many :transactions
 end
