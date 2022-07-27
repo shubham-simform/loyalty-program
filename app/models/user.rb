@@ -10,8 +10,13 @@ class User < ApplicationRecord
   # Associations
   belongs_to :country
   has_many :transactions, dependent: :destroy
+  has_many :user_points, dependent: :destroy
   has_many :user_rewards, dependent: :destroy
   has_many :rewards, through: :user_rewards
 
   enum loyalty_tier: { standard: 0, gold: 1, platinum: 2 }
+
+  def country_name
+    country.name
+  end
 end
