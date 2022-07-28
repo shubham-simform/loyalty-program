@@ -1,8 +1,6 @@
 class CreateTransactions < ActiveRecord::Migration[7.0]
   def change
     create_table :transactions do |t|
-
-      t.datetime :transaction_date
       t.string :country
       t.decimal :amount
 

@@ -13,7 +13,7 @@ class UpdateLoyaltyPointsJob
 
   def update_loyalty_points
     user.update(loyalty_points: generated_loyalty_points + user.loyalty_points)
-    user.user_points.create(point_earned: generated_loyalty_points)
+    user.user_points.create(earned_point: generated_loyalty_points)
   end
 
   def update_loyalty_tier
