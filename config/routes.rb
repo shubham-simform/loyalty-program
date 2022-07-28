@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
   resources :rewards
 
@@ -8,4 +11,6 @@ Rails.application.routes.draw do
 
   root 'transactions#index'
   get 'loyalty_points/index'
+
+  mount Sidekiq::Web => '/sidekiq'
 end

@@ -1,6 +1,4 @@
-class UpdateLoyaltyPointsJob
-  include Sidekiq::Job
-  queue_as :default
+class UpdateLoyaltyPointsJob < ApplicationJob
 
   def initialize(transaction_id) 
     @transaction_id = transaction_id

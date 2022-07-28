@@ -9,6 +9,6 @@ class Transaction < ApplicationRecord
   after_create :update_loyalty_points
 
   def update_loyalty_points
-    UpdateLoyaltyPointsJob.perform_async(id)
+    UpdateLoyaltyPointsJob.new(id).perform
   end
 end

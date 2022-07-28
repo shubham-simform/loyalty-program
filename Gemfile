@@ -82,3 +82,5 @@ group :test do
   gem 'shoulda-matchers', '~> 5.1'
 end
 
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
