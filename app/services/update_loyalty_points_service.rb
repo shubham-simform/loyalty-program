@@ -27,7 +27,12 @@ class UpdateLoyaltyPointsService < ApplicationService
   end
 
   def generated_loyalty_points
-    (transaction_amount / 100 * (user.country == User::DEFAULT_COUNTRY ? 10 : 20))
+    if transaction_amount >= 100 && user.country == User::DEFAULT_COUNTRY
+      earned_amount = transaction_amount / 10
+    elsif user.country != User::DEFAULT_COUNTRY
+      earned_amount = (transaction_amount / 10) * 2
+    end
+    earned_amount.round
   end
 
   private
