@@ -1,10 +1,10 @@
-class UpdateLoyaltyPointsJob < ApplicationJob
-
+class UpdateLoyaltyPointsService < ApplicationService
+  
   def initialize(transaction_id) 
     @transaction_id = transaction_id
   end
 
-  def perform
+  def call
     update_loyalty_points
     update_loyalty_tier
   end
@@ -15,15 +15,13 @@ class UpdateLoyaltyPointsJob < ApplicationJob
   end
 
   def update_loyalty_tier
-    loyalty_tier =
-      case user.loyalty_points
-      when 0...1000
-        'standard'
-      when 1000...5000
-        'gold'
-      else
-        'platinum'
-      end
+    loyalty_tier = if (0...1000) === user.loyalty_points
+                    'standard'
+                  elsif (1000...5000) === user.loyalty_points
+                    'gold'
+                  else
+                    'platinum'
+                  end
     user.update(loyalty_tier: loyalty_tier)
     AirportLoungeRewardsJob.perform_later(user.id) if user.gold?
   end
@@ -32,15 +30,18 @@ class UpdateLoyaltyPointsJob < ApplicationJob
     (transaction_amount / 100 * (user.country == User::DEFAULT_COUNTRY ? 10 : 20))
   end
 
-  def user
-    @user ||= transaction.user
-  end
+  private
 
-  def transaction_amount
-    @transaction_amount ||= transaction.amount
-  end
+    def user
+      @user ||= transaction.user
+    end
 
-  def transaction
-    @transaction ||= Transaction.find(@transaction_id)
-  end
+    def transaction_amount
+      @transaction_amount ||= transaction.amount
+    end
+
+    def transaction
+      @transaction ||= Transaction.find(@transaction_id)
+    end
+
 end
