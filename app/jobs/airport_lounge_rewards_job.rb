@@ -3,17 +3,15 @@
 class AirportLoungeRewardsJob < ApplicationJob
   queue_as :default
 
-  # Perform job to assign Airport Lounge Access Reward for specific users
   def perform(user_id)
-    @user.user_rewards.create(reward_id: reward_id) if user(user_id).gold?
+    @user.user_rewards.create(reward: load_reward) if load_user(user_id).gold?
   end
 
-  # Used to find the specific reward
-  def reward_id
-    @reward_id ||= Reward.find_or_create_by(name: 'Airport Lounge Access Reward').id
+  def load_reward
+    @reward ||= Reward.find_or_create_by(name: 'Airport Lounge Access Reward')
   end
 
-  def user(id)
+  def load_user(id)
     @user ||= User.find(id)
   end
 end
