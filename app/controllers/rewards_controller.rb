@@ -1,37 +1,17 @@
 class RewardsController < ApplicationController
   before_action :set_reward, only: %i[ show edit update destroy ]
 
-  # GET /rewards or /rewards.json
+
   def index
-    @rewards = Reward.all
+    @rewards = current_user.rewards
   end
 
   # GET /rewards/1 or /rewards/1.json
   def show
   end
 
-  # GET /rewards/new
-  def new
-    @reward = Reward.new
-  end
-
   # GET /rewards/1/edit
   def edit
-  end
-
-  # POST /rewards or /rewards.json
-  def create
-    @reward = Reward.new(reward_params)
-
-    respond_to do |format|
-      if @reward.save
-        format.html { redirect_to reward_url(@reward), notice: "Reward was successfully created." }
-        format.json { render :show, status: :created, location: @reward }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reward.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /rewards/1 or /rewards/1.json

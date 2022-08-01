@@ -1,14 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Rewards</h1>
-
-<div id="rewards">
-  <% @rewards.each do |reward| %>
-    <%= render reward %>
-    <p>
-      <%= link_to "Show this reward", reward %>
-    </p>
-  <% end %>
+<div class="jumbotron jumbotron-events" >
+  <div class="container" >
+    <div class="page-header text-center">
+      <p>
+        <h3>My Rewards</h3>
+      </p>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th >Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rewards.each do |reward| %>
+          <tr>
+            <td><%= reward.name %></td>
+            <td><%= reward.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to "New reward", new_reward_path %>
