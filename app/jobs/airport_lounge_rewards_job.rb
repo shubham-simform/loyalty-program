@@ -8,7 +8,7 @@ class AirportLoungeRewardsJob < ApplicationJob
   end
 
   def load_reward
-    @reward ||= Reward.find_or_create_by(name: 'Airport Lounge Access Reward')
+    @reward ||= Reward.find_or_create_by(name: Reward::AirportLounge)
   end
 
   def load_user(id)

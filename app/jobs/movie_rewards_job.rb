@@ -10,6 +10,6 @@ class MovieRewardsJob < ApplicationJob
   end
 
   def reward_id
-    @reward_id ||= Reward.find_or_create_by(name: 'Free Movie ticket').id
+    @reward_id ||= Reward.find_or_create_by(name: Reward::FreeMovieTicket).id
   end
 end
