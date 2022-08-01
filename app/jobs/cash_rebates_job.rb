@@ -9,6 +9,6 @@ class CashRebatesJob < ApplicationJob
   end
 
   def reward_id
-    @reward_id ||= Reward.find_or_create_by(name: Reward::CashRebate).id
+    @reward_id ||= Reward.find_or_create_by(name: Reward::CashRebate, description: 'description').id
   end
 end

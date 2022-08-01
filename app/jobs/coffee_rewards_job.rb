@@ -10,6 +10,6 @@ class CoffeeRewardsJob < ApplicationJob
   end
 
   def reward_id
-    @reward_id ||= Reward.find_or_create_by(name: Reward::FreeCoffeeReward).id
+    @reward_id ||= Reward.find_or_create_by(name: Reward::FreeCoffeeReward, description: 'description').id
   end
 end
